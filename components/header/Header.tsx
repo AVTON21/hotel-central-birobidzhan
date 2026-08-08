@@ -6,6 +6,10 @@ const navigation = [
 ];
 
 export function Header() {
+  const closeMobileMenu = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.currentTarget.closest("details")?.removeAttribute("open");
+  };
+
   return (
     <header className="site-header">
       <a className="brand" href="#top" aria-label="Гостиница Центральная, на главную">
@@ -19,10 +23,15 @@ export function Header() {
       <details className="mobile-nav">
         <summary aria-label="Открыть меню"><span className="menu-lines" /></summary>
         <nav className="mobile-panel" aria-label="Мобильная навигация">
-          {navigation.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
+          {navigation.map(([label, href]) => (
+            <a key={href} href={href} onClick={closeMobileMenu}>
+              {label}
+            </a>
+          ))}
           <a className="mobile-phone" href="tel:+74262240330">+7 (42622) 4-03-30</a>
         </nav>
       </details>
     </header>
   );
 }
+"use client";
