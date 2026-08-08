@@ -16,7 +16,7 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hotel-central-demo.sites.openai.com"),
+  metadataBase: new URL("https://hotel-central-birobidzhan.mariahhihh.chatgpt.site"),
   title: {
     default: "Гостиница «Центральная» — Биробиджан",
     template: "%s — Гостиница «Центральная»",
