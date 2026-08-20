@@ -1,0 +1,13 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Booking } from "@/components/booking/Booking";
+import { Footer } from "@/components/footer/Footer";
+import { Header } from "@/components/header/Header";
+import { getRoom, rooms } from "@/data/rooms";
+
+type Props = { params: Promise<{ slug: string }> };
+export function generateStaticParams() { return rooms.map(({ slug }) => ({ slug })); }
+export async function generateMetadata({ params }: Props): Promise<Metadata> { const room = getRoom((await params).slug); if (!room) return {}; return { title: room.name, description: `${room.name}: ${room.area}, ${room.guests}, от ${new Intl.NumberFormat("ru-RU").format(room.price)} ₽ за ночь.`, openGraph: { images: [{ url: room.images[0].src, alt: room.images[0].alt }] }, twitter: { images: [room.images[0].src] } }; }
+export default async function RoomPage({ params }: Props) { const room = getRoom((await params).slug); if (!room) notFound(); return <><Header /><main className="room-page"><div className="room-back"><Link href="/#rooms">← Все номера</Link><span>Concept / portfolio project</span></div><section className="room-hero"><div className="room-hero-intro"><p className="section-kicker">{room.eyebrow}</p><h1>{room.name}</h1><p>{room.description}</p><div className="room-hero-facts"><span>{room.area}</span><span>{room.guests}</span><span>{room.bed}</span></div></div><div className="room-gallery">{room.images.map((image, index) => <div className={`room-gallery-image image-${index + 1}`} key={image.src}><Image src={image.src} alt={image.alt} fill priority={index === 0} unoptimized sizes="(max-width: 760px) 100vw, 65vw" /></div>)}</div></section><section className="room-overview"><div><p className="section-kicker">О номере</p><h2>Всё нужное,<br /><i>ничего лишнего.</i></h2></div><div className="room-overview-copy"><p>Номер продуман так, чтобы в нём было легко выдохнуть после дороги и сосредоточиться, когда это нужно.</p><ul>{room.features.map((feature) => <li key={feature}>{feature}</li>)}</ul></div></section><section className="amenities"><p className="section-kicker">Удобства</p><h2>В номере</h2><div>{room.amenities.map((amenity, index) => <span key={amenity}><b>0{index + 1}</b>{amenity}</span>)}</div></section><section className="stay-conditions"><div><p className="section-kicker">Условия проживания</p><h2>Без<br /><i>неожиданностей.</i></h2></div><div><p><strong>Заезд — с 14:00</strong><br />Выезд — до 12:00. Стойка работает круглосуточно.</p><p><strong>Демо-бронирование</strong><br />Заявка не является оплатой и не передаётся стороннему сервису.</p></div></section><Booking initialRoom={room.slug} /></main><Footer /></>; }

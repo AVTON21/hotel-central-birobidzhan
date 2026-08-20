@@ -18,23 +18,24 @@ const cormorant = Cormorant_Garamond({
 export const metadata: Metadata = {
   metadataBase: new URL("https://hotel-central-birobidzhan.mariahhihh.chatgpt.site"),
   title: {
-    default: "Гостиница «Центральная» — Биробиджан",
-    template: "%s — Гостиница «Центральная»",
+    default: "Central Hotel Concept — portfolio project",
+    template: "%s — Central Hotel Concept",
   },
   description:
-    "Современная городская гостиница в центре Биробиджана, в 10 минутах пешком от вокзала.",
+    "Самостоятельный portfolio-концепт современного городского отеля: номера, услуги и демо-бронирование.",
+  alternates: { canonical: "/" },
   icons: { icon: "/favicon.svg" },
   openGraph: {
     type: "website",
     locale: "ru_RU",
-    title: "Гостиница «Центральная» — Биробиджан",
-    description: "Гостиница в центре Биробиджана. 96 номеров и бесплатное бронирование.",
+    title: "Central Hotel Concept — городской отель",
+    description: "Portfolio-концепт современного городского отеля: номера, услуги и демо-бронирование.",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "Гостиница «Центральная» в Биробиджане" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Гостиница «Центральная» — Биробиджан",
-    description: "Гостиница в центре Биробиджана. 96 номеров и бесплатное бронирование.",
+    title: "Central Hotel Concept — городской отель",
+    description: "Portfolio-концепт современного городского отеля: номера, услуги и демо-бронирование.",
     images: ["/og.png"],
   },
 };

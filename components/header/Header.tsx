@@ -1,37 +1,17 @@
-const navigation = [
-  ["Номера", "#rooms"],
-  ["Услуги", "#services"],
-  ["О гостинице", "#about"],
-  ["Контакты", "#contacts"],
-];
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { navigation } from "@/data/site";
 
 export function Header() {
-  const closeMobileMenu = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.currentTarget.closest("details")?.removeAttribute("open");
-  };
-
-  return (
-    <header className="site-header">
-      <a className="brand" href="#top" aria-label="Гостиница Центральная, на главную">
-        Центральная <small>Биробиджан</small>
-      </a>
-      <nav className="desktop-nav" aria-label="Основная навигация">
-        {navigation.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
-      </nav>
-      <a className="header-phone" href="tel:+74262240330">+7 (42622) 4-03-30</a>
-      <a className="header-book" href="https://hotel79.ru/booking.html" target="_blank" rel="noreferrer">Забронировать</a>
-      <details className="mobile-nav">
-        <summary aria-label="Открыть меню"><span className="menu-lines" /></summary>
-        <nav className="mobile-panel" aria-label="Мобильная навигация">
-          {navigation.map(([label, href]) => (
-            <a key={href} href={href} onClick={closeMobileMenu}>
-              {label}
-            </a>
-          ))}
-          <a className="mobile-phone" href="tel:+74262240330">+7 (42622) 4-03-30</a>
-        </nav>
-      </details>
-    </header>
-  );
+  const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false);
+  useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 28); onScroll(); window.addEventListener("scroll", onScroll, { passive: true }); return () => window.removeEventListener("scroll", onScroll); }, []);
+  useEffect(() => { const onKey = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); }; window.addEventListener("keydown", onKey); return () => window.removeEventListener("keydown", onKey); }, []);
+  return <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+    <Link className="brand" href="/" aria-label="Центральная, на главную">Центральная <small>hotel concept</small></Link>
+    <nav className="desktop-nav" aria-label="Основная навигация">{navigation.map(([label, href]) => <Link key={href} href={`/${href}`}>{label}</Link>)}</nav>
+    <Link className="header-book" href="/#booking">Забронировать <span aria-hidden="true">↗</span></Link>
+    <button className="menu-toggle" type="button" aria-label={open ? "Закрыть меню" : "Открыть меню"} aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /><span /></button>
+    {open && <nav className="mobile-panel" aria-label="Мобильная навигация"><div className="mobile-panel-top"><span>Навигация</span><button type="button" onClick={() => setOpen(false)} aria-label="Закрыть меню">×</button></div>{navigation.map(([label, href], index) => <Link key={href} href={`/${href}`} onClick={() => setOpen(false)}><span>0{index + 1}</span>{label}</Link>)}<Link className="mobile-menu-book" href="/#booking" onClick={() => setOpen(false)}>Забронировать <span>↗</span></Link></nav>}
+  </header>;
 }
-"use client";

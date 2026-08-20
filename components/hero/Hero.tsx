@@ -1,27 +1,5 @@
 import Image from "next/image";
 
 export function Hero() {
-  return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
-      <div className="hero-media">
-        <Image className="hero-photo" src="/images/hotel-facade.jpg" alt="Фасад гостиницы «Центральная» на улице Шолом-Алейхема в Биробиджане" fill priority unoptimized sizes="100vw" />
-        <div className="hero-shade" />
-        <div className="hero-copy">
-          <p className="eyebrow">Гостиница в Биробиджане</p>
-          <h1 id="hero-title">В центре города. <em>Всё рядом.</em></h1>
-          <p className="hero-sub">96 номеров — от недорогих вариантов до апартаментов. Бесплатные Wi‑Fi, парковка и бронирование.</p>
-          <div className="hero-actions">
-            <a className="button button-primary" href="https://hotel79.ru/booking.html" target="_blank" rel="noreferrer">Забронировать номер <span aria-hidden="true">↗</span></a>
-            <a className="button button-ghost" href="#rooms">Посмотреть номера</a>
-          </div>
-        </div>
-        <span className="hero-scroll" aria-hidden="true">Листайте</span>
-        <div className="hero-dock" aria-label="Ключевая информация">
-          <div className="dock-item"><span>Расположение</span><strong>Центр города</strong></div>
-          <div className="dock-item"><span>От вокзала</span><strong>10 минут пешком</strong></div>
-          <a className="dock-book" href="https://hotel79.ru/booking.html" target="_blank" rel="noreferrer">Бронировать бесплатно →</a>
-        </div>
-      </div>
-    </section>
-  );
+  return <section className="hero" id="top" aria-labelledby="hero-title"><div className="hero-media"><Image className="hero-photo" src="/images/hotel-facade.jpg" alt="Фасад гостиницы Центральная" fill priority unoptimized sizes="100vw" /><div className="hero-shade" /><div className="hero-copy"><p className="eyebrow">Биробиджан · городской отель</p><h1 id="hero-title">Остановитесь <em>в своём ритме.</em></h1><p>Тихие номера, деловые пространства и всё важное в нескольких минутах от вас.</p><div className="hero-actions"><a className="button button-primary" href="#rooms">Выбрать номер <span>↓</span></a><a className="button button-ghost" href="#booking">Забронировать <span>↗</span></a></div></div><div className="hero-facts" aria-label="Ключевые факты"><span>Центр города</span><span>10 минут до вокзала</span><span>24/7 стойка</span></div><p className="concept-badge">Concept / portfolio project</p></div></section>;
 }
