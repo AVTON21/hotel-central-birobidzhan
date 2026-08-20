@@ -10,6 +10,7 @@ import { Location } from "@/components/location/Location";
 import { Reviews } from "@/components/reviews/Reviews";
 import { Rooms } from "@/components/rooms/Rooms";
 import { Services } from "@/components/services/Services";
+import { ArrowUpRight } from "@/components/icons/ArrowUpRight";
 
 export const metadata: Metadata = { title: "Central Hotel Concept — городской отель", description: "Самостоятельный portfolio-концепт современного городского отеля: номера, услуги и демо-бронирование." };
-export default function Home() { return <><main><div className="first-screen"><Header /><Hero /></div><Rooms /><Advantages /><Services /><Gallery /><Booking /><Reviews /><Location /><Faq /></main><Footer /><div className="mobile-cta"><a href="tel:+74262240330">Позвонить</a><a href="#booking">Забронировать <span>↗</span></a></div></>; }
+export default function Home() { return <><main><div className="first-screen"><Header /><Hero /></div><Rooms /><Advantages /><Services /><Gallery /><Booking /><Reviews /><Location /><Faq /></main><Footer /><div className="mobile-cta"><a href="tel:+74262240330">Позвонить</a><a href="#booking">Забронировать <ArrowUpRight className="button-icon" /></a></div></>; }
